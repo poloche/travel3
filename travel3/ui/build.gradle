@@ -9,16 +9,55 @@
 // Note however, that you may define your own "run" and "debug" task if you
 // prefer. In this case NetBeans will not add these tasks but you may rely on
 // your own implementation.
-if (!hasProperty('mainClass')) {
-    ext.mainClass = 'org.plc.travel.UIMain'
+//if (!hasProperty('mainClass')) {
+//    ext.mainClass = 'org.plc.travel.UIMain'
+//}
+//
+//dependencies {
+//    // TODO: Add dependencies here
+//    //   but note that JUnit should have already been added in parent.gradle.
+//    //   By default, only the Maven Central Repository is specified in
+//    //   parent.gradle.
+//    //
+//    // You can read more about how to add dependency here:
+//    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
+//}
+
+
+// Declares binary plugin and its required JavaFX classpath
+apply from: "javafx.plugin"
+
+// Configures plugin
+javafx {
+    // Points to JDK and its JavaFX libraries, also declares target runtime JDK
+    //javaRuntime = '/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk'
+    
+    // Application name and ID presented by target OS
+    appID 'travelUI'
+    appName 'TravelUI'
+    
+    // Main class of application
+    mainClass 'org.plc.travel.UIMain'
+    
+    // JVM arguments, system properties, application command line arguments
+    jvmArgs = ['-XX:+AggressiveOpts', '-XX:CompileThreshold=1']
+    systemProperties = ['prism.disableRegionCaching':'true']
+    arguments = ['-l', '--fast']
+
+    // Keystore credentials for signing JAR
+    // Generate key: keytool -genkey -alias release -keyalg RSA -keystore keystore.jks -keysize 2048
+    releaseKey {
+        alias = 'release'
+        keyPass = getProjectProperty('keyStorePassword')
+        keyStore = file("${System.properties['user.home']}/keystore/keystore.jks")
+        storePass = getProjectProperty('storePassword')
+    }
+    
+    signingMode 'release'
+    
+    // ...
 }
 
-dependencies {
-    // TODO: Add dependencies here
-    //   but note that JUnit should have already been added in parent.gradle.
-    //   By default, only the Maven Central Repository is specified in
-    //   parent.gradle.
-    //
-    // You can read more about how to add dependency here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
+String getProjectProperty(String propertyName) {
+    project.hasProperty(propertyName) ? project.property(propertyName) : null
 }
