@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.HomeView">
+   <effect>
+      <Glow />
+   </effect>
+   <children>
+      <Pane fx:id="pnData" prefHeight="342.0" prefWidth="528.0" visible="false">
+         <children>
+            <TableView fx:id="tvEmployer" onMouseClicked="#clickTableView" prefHeight="342.0" prefWidth="317.0">
+               <columns>
+                  <TableColumn fx:id="tcId" prefWidth="50.0" text="ID" />
+                  <TableColumn fx:id="tcName" prefWidth="135.0" text="Name" />
+                  <TableColumn fx:id="tcCompany" prefWidth="131.0" text="Company" />
+               </columns>
+            </TableView>
+            <TextField fx:id="txName" layoutX="327.0" layoutY="83.0" />
+            <TextField fx:id="txCompany" layoutX="327.0" layoutY="127.0" />
+            <Button fx:id="btAdd" layoutX="327.0" layoutY="171.0" mnemonicParsing="false" onAction="#clickAdd" text="Add" />
+            <Button fx:id="btUpdate" layoutX="374.0" layoutY="171.0" mnemonicParsing="false" onAction="#clickUpdate" text="Update" />
+            <Button fx:id="btDelete" layoutX="443.0" layoutY="171.0" mnemonicParsing="false" onAction="#clickDelete" text="Delete" />
+         </children>
+      </Pane>
+      <Pane fx:id="pnLogin" prefHeight="342.0" prefWidth="528.0">
+         <children>
+            <TextField fx:id="txUsername" layoutX="171.0" layoutY="104.0" />
+            <PasswordField fx:id="pfPassword" layoutX="171.0" layoutY="140.0" />
+            <Button fx:id="btLogin" layoutX="236.0" layoutY="190.0" mnemonicParsing="false" onAction="#clickLogin" text="Login" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

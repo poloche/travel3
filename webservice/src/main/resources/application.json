@@ -1,0 +1,21 @@
+{
+  "javax": {
+    "persistence": {
+      "jdbc": {
+        "driver": "com.mysql.jdbc.Driver",
+        "url": "jdbc:mysql://localhost/issuemanager",
+        "user": "root",
+        "password": ""
+      }
+    }
+  },
+  "eclipselink": {
+    "logging": {
+      "level": "off"
+    },
+    "ddl-generation": {
+    	"value": "create-tables",
+    	"output-mode": "database"
+	}
+  }
+}
